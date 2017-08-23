@@ -62,9 +62,9 @@ module Game
         [@rt.width-300, @rt.height-100, @rt.width, @rt.height]
         # [@rt.width-300, @rt.height-20, @rt.width, @rt.height],      
       ]
-      
-      stage = stageA
-      
+
+      stage = stageB
+
       # 壁の生成と登録
       stage.each { |st|
         add_obj(Wall.new(st[0], st[1], st[2], st[3]))
@@ -73,9 +73,27 @@ module Game
       # ボールの生成
       ball = Ball.new(500, 100, 15)
       add_obj(ball)
+
+      @first_x = 0
+      @first_y = 0
+      @end_x= 0
+      @end_y= 0
     end
 
     def play
+      if Input.mouse_push?(M_LBUTTON)
+        @first_x = Input.mouse_pos_x - @rt.ox
+        @first_y = Input.mouse_pos_y - @rt.oy
+      end
+      puts "first_x: #{@first_x}, first_y: #{@first_y}"
+      if Input.mouse_release?(M_LBUTTON)
+        @end_x = Input.mouse_pos_x - @rt.ox
+        @end_y = Input.mouse_pos_y - @rt.oy
+
+        @objects << CPStaticFloor.new(@first_x, @first_y, (@first_x - @end_x).abs, (@first_y - @end_y).abs, @space)
+      end
+      puts "end_x: #{@end_x}, end_y: #{@end_y}"
+
       @space.step(@speed)
       # 描画座標のオフセット
       @rt.ox += 1
