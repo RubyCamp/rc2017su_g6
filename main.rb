@@ -14,12 +14,17 @@ require_relative 'lib/box'
 require_relative 'scene'
 require_relative 'scenes/opening/director'
 require_relative 'scenes/game/director'
+require_relative 'scenes/gameclear/director'
+require_relative 'scenes/gameover/director'
+require_relative 'scenes/game/stage'
 
 Window.width = 640
 Window.height = 480
 
 Scene.add_scene(Opening::Director.new,  :opening)
 Scene.add_scene(Game::Director.new,  :game)
+Scene.add_scene(GameClear::Director.new,  :gameclear)
+Scene.add_scene(GameOver::Director.new,  :gameover)
 
 Scene.set_current_scene(:opening)
 

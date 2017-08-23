@@ -15,7 +15,7 @@ class CPStaticLine
     @shape.u = 0.0
     @shape.add_to_space(space)
   end
-  def draw
-    Window.draw(@x, @y, @image)
+  def draw(rt)
+    rt.draw(@x, @y, @image)
   end
 end
