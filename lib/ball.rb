@@ -12,5 +12,4 @@ class Ball < CPCircle
       @image,
       @body.a * 180.0 / Math::PI)
   end
-
 end
