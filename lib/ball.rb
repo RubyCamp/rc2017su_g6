@@ -1,4 +1,5 @@
 class Ball < CPCircle
+  attr_reader :body
   def initialize(x, y, r, opt = {})
     super
     self.shape.e = opt[:shape_e] || 1.0
