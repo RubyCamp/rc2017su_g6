@@ -15,7 +15,8 @@ module Game
       @end_x, @end_y = 0, 0
 
       @objects = []
-
+      
+      @segment = []
       # stage.rbのグローバル変数参照
       @stages = [STAGE_A, STAGE_B]
       @stage_num = stage_num
@@ -44,6 +45,7 @@ module Game
       # 基本的にすべてrt.drawで描画
       @rt.draw(0, 0, @background)
       @objects.each {|obj| obj.draw(@rt)}
+      @segment.each {|s| s.draw(@rt}
       @rt.draw_font(2950,100,"ゴール",@font)
       # 最後にrtで描画したものをWindow.drawする
       Window.draw(0, 0, @rt)
@@ -79,9 +81,11 @@ module Game
       if Input.mouse_release?(M_LBUTTON)
         @end_x = Input.mouse_pos_x + @rt.ox
         @end_y = Input.mouse_pos_y + @rt.oy
-        # 長さ制限付き
-        if (@first_x - @end_x).abs < 200 && (@first_y - @end_y).abs < 200
-          add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 1, :shape_e=>1.0))
+        @segment << Segment.new(@first_x, @first_y, @end_x, @end_y, 1, :shape_e=>1.0)
+        @segment.last.add_to(@space)
+        if @segment.size >= 5
+          @segment.first.shape.remove_from_space(@space)
+          @segment.shift
         end
       end
     end
