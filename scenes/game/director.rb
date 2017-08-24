@@ -50,11 +50,11 @@ module Game
       # ゲームの終了条件
       if @ball.body.p.y > Window.height || @ball.body.p.y < 0
         Scene.set_current_scene(:gameover)
-        Scene.add_scene(Game::Director.new(@stage),  :game)
+        Scene.add_scene(Game::Director.new(0),  :game)
       end
       # ステージクリア
       if @ball.body.p.x > 3073
-        if @stage_num < @stages.size
+        if @stage_num+1 < @stages.size
           Scene.add_scene(Game::Director.new(@stage_num+1),  :game)
           Scene.set_current_scene(:game)
         else
