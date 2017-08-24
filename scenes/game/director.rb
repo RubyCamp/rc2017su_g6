@@ -66,7 +66,7 @@ module Game
         @end_x = Input.mouse_pos_x + @rt.ox
         @end_y = Input.mouse_pos_y + @rt.oy
         if (@first_x - @end_x).abs < 200 && (@first_y - @end_y).abs < 200
-          add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 15, :shape_e=>1.0))
+          add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 1, :shape_e=>1.0))
         end
       end
     end
