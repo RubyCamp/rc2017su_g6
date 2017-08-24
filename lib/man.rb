@@ -1,5 +1,5 @@
-class Ball < CPCircle
-  DEFAULT_COLLISION_TYPE = 4
+class Man < CPCircle
+  DEFAULT_COLLISION_TYPE = 5
   attr_reader :body
   def initialize(x, y, r, opt = {})
     super

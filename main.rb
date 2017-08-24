@@ -10,6 +10,7 @@ require_relative 'lib/base/cp_segment'
 
 require_relative 'lib/wall'
 require_relative 'lib/ball'
+require_relative 'lib/man'
 require_relative 'lib/box'
 require_relative 'lib/segment'
 

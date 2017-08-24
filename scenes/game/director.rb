@@ -33,7 +33,7 @@ module Game
       }
 
       # 自機生成
-      @man = Ball.new(500, 100, 15, :image => 'images/character.png')
+      @man = Man.new(500, 100, 15, :image => 'images/character.png')
       add_obj(@man)
 
       #文字の描画
@@ -42,6 +42,8 @@ module Game
       #BGMの生成
       @sound = Sound.new('sound/BGM4.wav')
       @finish = true
+
+      _set_collision_ball_and_item
 
     end
 
@@ -107,6 +109,14 @@ module Game
         if @segments.size >= 3
           @segments.first.shape.remove_from_space(@space)
           @segments.shift
+        end
+      end
+    end
+
+    def _set_collision_ball_and_item
+      @space.add_collision_handler(Man::DEFAULT_COLLISION_TYPE, Segment::DEFAULT_COLLISION_TYPE) do | man, segment, arb|
+        @space.add_post_step_callback(segment) do |_, shape|
+          puts "collision!"
         end
       end
     end
