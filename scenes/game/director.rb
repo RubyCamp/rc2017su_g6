@@ -42,6 +42,9 @@ module Game
       #BGMの生成
       @sound = Sound.new('sound/BGM4.wav')
       @finish = true
+      
+      #効果音
+      @effect = Sound.new('sound/sound effect.wav')
 
       _set_collision_ball_and_item
 
@@ -117,6 +120,7 @@ module Game
       @space.add_collision_handler(Man::DEFAULT_COLLISION_TYPE, Segment::DEFAULT_COLLISION_TYPE) do | man, segment, arb|
         @space.add_post_step_callback(segment) do |_, shape|
           puts "collision!"
+          @effect.play
         end
       end
     end
