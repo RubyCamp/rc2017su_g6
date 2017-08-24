@@ -40,7 +40,7 @@ module Game
       @font = Font.new(32)
 
       #BGMの生成
-      @sound = Sound.new('sound/BGM1.wav')
+      @sound = Sound.new('sound/BGM4.wav')
       @finish = true
 
     end
