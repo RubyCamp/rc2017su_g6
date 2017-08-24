@@ -12,7 +12,7 @@ STAGE_A = [
   [1700,  202,  30,   Window.height-WALL_WIDTH],
   [1850,  200,  30,   Window.height-WALL_WIDTH],
   [2000,  300,  30,   Window.height-WALL_WIDTH],
-  [2050,  480,  1000, Window.height-WALL_WIDTH],
+  [2050,  700,  1000, Window.height-WALL_WIDTH],
   [2050,  -600, 400,  Window.height-WALL_WIDTH],
   [2380,  -340, 30,   Window.height-WALL_WIDTH],
   [2600,  -300, 30,   Window.height-WALL_WIDTH],
