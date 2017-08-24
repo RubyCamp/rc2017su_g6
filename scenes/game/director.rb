@@ -38,11 +38,22 @@ module Game
 
       #文字の描画
       @font = Font.new(32)
+      
+      #BGMの生成
+      @sound = Sound.new('sound/BGM1.wav')
+      @finish = true
+      
     end
 
     def play
 
       draw_floor()
+      
+      #BGM再生
+      if @finish
+        @sound.play
+        @finish = false
+      end
 
       @space.step(@speed)
 
@@ -58,11 +69,13 @@ module Game
       Window.draw(0, 0, @rt)
       # ゲームの終了条件
       if @man.body.p.y > Window.height || @man.body.p.y < 0
+        @sound.stop
         Scene.set_current_scene(:gameover)
         Scene.add_scene(Game::Director.new(0),  :game)
       end
       # ステージクリア
       if @man.body.p.x > 3073
+        @sound.stop
         if @stage_num+1 < @stages.size
           Scene.add_scene(Game::Director.new(@stage_num+1),  :game)
           Scene.set_current_scene(:game)
