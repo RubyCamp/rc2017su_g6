@@ -12,7 +12,7 @@ STAGE_A = [
   [1700,  202,  30,   Window.height-WALL_WIDTH],
   [1850,  200,  30,   Window.height-WALL_WIDTH],
   [2000,  300,  30,   Window.height-WALL_WIDTH],
-  [2050,  480,  1000, Window.height-WALL_WIDTH],
+  [2050,  700,  1000, Window.height-WALL_WIDTH],
   [2050,  -600, 400,  Window.height-WALL_WIDTH],
   [2380,  -340, 30,   Window.height-WALL_WIDTH],
   [2600,  -300, 30,   Window.height-WALL_WIDTH],
@@ -51,3 +51,14 @@ STAGE_A = [
   [2900,  400,  3073-2900, Window.height-400],      
 ]
 
+ENEMIES = [
+  [700, 100, 15],
+  [1000, 100, 15],
+  [1300, 100, 15],
+  [1600, 100, 15],
+  [1900, 100, 15],
+  [2200, 100, 15],
+  [2500, 100, 15],
+  [3100, 100, 15],
+  [3600, 100, 15],
+]

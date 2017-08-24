@@ -15,8 +15,10 @@ module Game
       @end_x, @end_y = 0, 0
 
       @objects = []
-      
-      @segment = []
+
+      # 線のオブジェクトの集合
+      @segments = []
+
       # stage.rbのグローバル変数参照
       @stages = [STAGE_A, STAGE_B]
       @stage_num = stage_num
@@ -26,9 +28,13 @@ module Game
         add_obj(Wall.new(st[0], st[1], st[2], st[3]))
       }
 
-      # ボールの生成
-      @ball = Ball.new(500, 100, 15)
-      add_obj(@ball)
+      ENEMIES.each { |enemy|
+        add_obj(Ball.new(enemy[0], enemy[1], enemy[2]))
+      }
+
+      # 自機生成
+      @man = Ball.new(500, 100, 15, :image => 'images/character.png')
+      add_obj(@man)
 
       #文字の描画
       @font = Font.new(32)
@@ -41,21 +47,22 @@ module Game
       @space.step(@speed)
 
       # 描画座標のオフセット
-      @rt.ox = @ball.body.p.x - 200
+      @rt.ox = @man.body.p.x - 200
       # 基本的にすべてrt.drawで描画
       @rt.draw(0, 0, @background)
+
       @objects.each {|obj| obj.draw(@rt)}
-      @segment.each {|s| s.draw(@rt)}
+      @segments.each {|s| s.draw(@rt)}
       @rt.draw_font(2950,100,"ゴール",@font)
       # 最後にrtで描画したものをWindow.drawする
       Window.draw(0, 0, @rt)
       # ゲームの終了条件
-      if @ball.body.p.y > Window.height || @ball.body.p.y < 0
+      if @man.body.p.y > Window.height || @man.body.p.y < 0
         Scene.set_current_scene(:gameover)
         Scene.add_scene(Game::Director.new(0),  :game)
       end
       # ステージクリア
-      if @ball.body.p.x > 3073
+      if @man.body.p.x > 3073
         if @stage_num+1 < @stages.size
           Scene.add_scene(Game::Director.new(@stage_num+1),  :game)
           Scene.set_current_scene(:game)
@@ -63,7 +70,7 @@ module Game
           Scene.set_current_scene(:gameclear)
           Scene.add_scene(Game::Director.new(0),  :game)
         end
-     end
+      end
 
     end
 
@@ -81,11 +88,12 @@ module Game
       if Input.mouse_release?(M_LBUTTON)
         @end_x = Input.mouse_pos_x + @rt.ox
         @end_y = Input.mouse_pos_y + @rt.oy
-        @segment << Segment.new(@first_x, @first_y, @end_x, @end_y, 1, :shape_e=>1.0)
-        @segment.last.add_to(@space)
-        if @segment.size >= 5
-          @segment.first.shape.remove_from_space(@space)
-          @segment.shift
+
+        @segments << Segment.new(@first_x, @first_y, @end_x, @end_y, 1, :shape_e=>1.0)
+        @segments.last.add_to(@space)
+        if @segments.size >= 5
+          @segments.first.shape.remove_from_space(@space)
+          @segments.shift
         end
       end
     end
