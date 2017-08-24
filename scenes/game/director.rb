@@ -38,17 +38,17 @@ module Game
 
       #文字の描画
       @font = Font.new(32)
-      
+
       #BGMの生成
       @sound = Sound.new('sound/BGM1.wav')
       @finish = true
-      
+
     end
 
     def play
 
       draw_floor()
-      
+
       #BGM再生
       if @finish
         @sound.play
