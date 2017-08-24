@@ -1,7 +1,7 @@
 module Game
   class Director
 
-    def initialize
+    def initialize(stage_num)
       @space = CP::Space.new
       @space.gravity = CP::Vec2.new(0, 100)
       @speed = 1 / 60.0
@@ -17,10 +17,11 @@ module Game
       @objects = []
 
       # stage.rbのグローバル変数参照
-      stage = STAGE_A
+      @stages = [STAGE_A, STAGE_B]
+      @stage_num = stage_num
 
       # 壁の生成と登録
-      stage.each { |st|
+      @stages[@stage_num].each { |st|
         add_obj(Wall.new(st[0], st[1], st[2], st[3]))
       }
 
@@ -46,13 +47,18 @@ module Game
       # ゲームの終了条件
       if @ball.body.p.y > Window.height || @ball.body.p.y < 0
         Scene.set_current_scene(:gameover)
-        Scene.add_scene(Game::Director.new,  :game)
+        Scene.add_scene(Game::Director.new(@stage),  :game)
       end
-
+      # ステージクリア
       if @ball.body.p.x > 3073
-        Scene.set_current_scene(:gameclear)
-        Scene.add_scene(Game::Director.new,  :game)
-      end
+        if @stage_num < @stages.size
+          Scene.add_scene(Game::Director.new(@stage_num+1),  :game)
+          Scene.set_current_scene(:game)
+        else
+          Scene.set_current_scene(:gameclear)
+          Scene.add_scene(Game::Director.new(0),  :game)
+        end
+     end
 
     end
 
@@ -70,7 +76,10 @@ module Game
       if Input.mouse_release?(M_LBUTTON)
         @end_x = Input.mouse_pos_x + @rt.ox
         @end_y = Input.mouse_pos_y + @rt.oy
-        add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 2, :shape_e=>1.0))
+        # 長さ制限付き
+        if (@first_x - @end_x).abs < 200 && (@first_y - @end_y).abs < 200
+          add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 1, :shape_e=>1.0))
+        end
       end
     end
   end
