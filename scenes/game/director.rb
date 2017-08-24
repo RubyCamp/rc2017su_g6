@@ -29,6 +29,8 @@ module Game
       @ball = Ball.new(500, 100, 15)
       add_obj(@ball)
 
+      #文字の描画
+      @font = Font.new(32)
     end
 
     def play
@@ -42,6 +44,7 @@ module Game
       # 基本的にすべてrt.drawで描画
       @rt.draw(0, 0, @background)
       @objects.each {|obj| obj.draw(@rt)}
+      @rt.draw_font(2950,100,"ゴール",@font)
       # 最後にrtで描画したものをWindow.drawする
       Window.draw(0, 0, @rt)
       # ゲームの終了条件
