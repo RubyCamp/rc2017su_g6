@@ -11,6 +11,7 @@ class CPBase
   def set_image(img)
     if img
       @image = Image.load(img)
+      @image.set_color_key([255, 255, 255])
     else
       @image = shape_default_image
     end
