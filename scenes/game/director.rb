@@ -44,11 +44,16 @@ module Game
       # 最後にrtで描画したものをWindow.drawする
       Window.draw(0, 0, @rt)
       # ゲームの終了条件
-      puts @ball.body.p.y
       if @ball.body.p.y > Window.height || @ball.body.p.y < 0
         Scene.set_current_scene(:gameover)
         Scene.add_scene(Game::Director.new,  :game)
       end
+
+      if @ball.body.p.x > 3073
+        Scene.set_current_scene(:gameclear)
+        Scene.add_scene(Game::Director.new,  :game)
+      end
+
     end
 
     def add_obj(obj)
@@ -65,7 +70,7 @@ module Game
       if Input.mouse_release?(M_LBUTTON)
         @end_x = Input.mouse_pos_x + @rt.ox
         @end_y = Input.mouse_pos_y + @rt.oy
-        add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 15, :shape_e=>1.0))
+        add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 2, :shape_e=>1.0))
       end
     end
   end
