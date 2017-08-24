@@ -45,7 +45,9 @@ module Game
       
       #効果音
       @effect = Sound.new('sound/sound effect.wav')
-
+      
+      #時間
+      @now = Time.now
       _set_collision_ball_and_item
 
     end
@@ -119,8 +121,12 @@ module Game
     def _set_collision_ball_and_item
       @space.add_collision_handler(Man::DEFAULT_COLLISION_TYPE, Segment::DEFAULT_COLLISION_TYPE) do | man, segment, arb|
         @space.add_post_step_callback(segment) do |_, shape|
-          puts "collision!"
-          @effect.play
+          if Time.now - @now > 1.0
+            puts "collision!"
+            @effect.play
+            puts Time.now - @now
+            @now = Time.now
+          end
         end
       end
     end
