@@ -14,9 +14,9 @@ require_relative 'lib/box'
 require_relative 'scene'
 require_relative 'scenes/opening/director'
 require_relative 'scenes/game/director'
-require_relative 'scenes/gameclear/director'
-require_relative 'scenes/gameover/director'
 require_relative 'scenes/game/stage'
+require_relative 'scenes/gameover/director'
+require_relative 'scenes/gameclear/director'
 
 Window.width = 640
 Window.height = 480

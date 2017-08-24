@@ -38,15 +38,16 @@ module Game
 
       # 描画座標のオフセット
       @rt.ox = @ball.body.p.x - 200
-      puts(@ball.body.p.y)
       # 基本的にすべてrt.drawで描画
       @rt.draw(0, 0, @background)
       @objects.each {|obj| obj.draw(@rt)}
       # 最後にrtで描画したものをWindow.drawする
       Window.draw(0, 0, @rt)
       # ゲームの終了条件
+      puts @ball.body.p.y
       if @ball.body.p.y > Window.height || @ball.body.p.y < 0
         Scene.set_current_scene(:gameover)
+        Scene.add_scene(Game::Director.new,  :game)
       end
     end
 
