@@ -91,7 +91,7 @@ module Game
 
         @segments << Segment.new(@first_x, @first_y, @end_x, @end_y, 1, :shape_e=>1.0)
         @segments.last.add_to(@space)
-        if @segments.size >= 5
+        if @segments.size >= 3
           @segments.first.shape.remove_from_space(@space)
           @segments.shift
         end
