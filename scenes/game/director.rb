@@ -45,7 +45,7 @@ module Game
       # 基本的にすべてrt.drawで描画
       @rt.draw(0, 0, @background)
       @objects.each {|obj| obj.draw(@rt)}
-      @segment.each {|s| s.draw(@rt}
+      @segment.each {|s| s.draw(@rt)}
       @rt.draw_font(2950,100,"ゴール",@font)
       # 最後にrtで描画したものをWindow.drawする
       Window.draw(0, 0, @rt)
