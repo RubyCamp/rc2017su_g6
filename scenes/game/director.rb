@@ -65,11 +65,7 @@ module Game
       if Input.mouse_release?(M_LBUTTON)
         @end_x = Input.mouse_pos_x + @rt.ox
         @end_y = Input.mouse_pos_y + @rt.oy
-
-        @objects << CPStaticFloor.new(@first_x, @first_y, 
-                                      (@first_x - @end_x).abs, 
-                                      (@first_y - @end_y).abs, 
-                                      @space)
+        add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 15, :shape_e=>1.0))
       end
     end
   end
