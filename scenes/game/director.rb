@@ -28,9 +28,13 @@ module Game
       @ball = Ball.new(500, 100, 15)
       add_obj(@ball)
 
+      #文字の描画
+      @font = Font.new(32)
     end
 
     def play
+
+      
 
       draw_floor()
 
@@ -41,6 +45,7 @@ module Game
       # 基本的にすべてrt.drawで描画
       @rt.draw(0, 0, @background)
       @objects.each {|obj| obj.draw(@rt)}
+      @rt.draw_font(2950,100,"ゴール",@font)
       # 最後にrtで描画したものをWindow.drawする
       Window.draw(0, 0, @rt)
       # ゲームの終了条件
@@ -65,9 +70,7 @@ module Game
       if Input.mouse_release?(M_LBUTTON)
         @end_x = Input.mouse_pos_x + @rt.ox
         @end_y = Input.mouse_pos_y + @rt.oy
-        if (@first_x - @end_x).abs < 200 && (@first_y - @end_y).abs < 200
-          add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 1, :shape_e=>1.0))
-        end
+        add_obj(Segment.new(@first_x, @first_y, @end_x, @end_y, 15, :shape_e=>1.0))
       end
     end
   end
