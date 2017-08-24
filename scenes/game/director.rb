@@ -29,7 +29,7 @@ module Game
       }
 
       ENEMIES.each { |enemy|
-        add_obj(Ball.new(enemy[0], enemy[1], enemy[2]))
+        add_obj(Ball.new(enemy[0], enemy[1], enemy[2], :image => enemy[3]))
       }
 
       # 自機生成

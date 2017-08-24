@@ -52,13 +52,13 @@ STAGE_A = [
 ]
 
 ENEMIES = [
-  [700, 100, 15],
-  [1000, 100, 15],
-  [1300, 100, 15],
-  [1600, 100, 15],
-  [1900, 100, 15],
-  [2200, 100, 15],
-  [2500, 100, 15],
-  [3100, 100, 15],
-  [3600, 100, 15],
+  [700,   100, 15, 'images/needle.png'],
+  [1000,  100, 15, 'images/needle.png'],
+  [1300,  100, 15, 'images/needle.png'],
+  [1600,  100, 15, 'images/needle.png'],
+  [1900,  100, 15, 'images/needle.png'],
+  [2200,  100, 15, 'images/needle.png'],
+  [2500,  100, 15, 'images/needle.png'],
+  [3100,  100, 15, 'images/needle.png'],
+  [3600,  100, 15, 'images/needle.png'],
 ]
