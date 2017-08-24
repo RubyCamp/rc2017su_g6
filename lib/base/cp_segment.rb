@@ -26,7 +26,7 @@ class CPSegment < CPBase
       @v1.y,
       @v2.x,
       @v2.y,
-      C_BLUE)
+      C_GREEN)
   end
 
   private
